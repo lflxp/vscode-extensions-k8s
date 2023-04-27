@@ -1,0 +1,126 @@
+{
+  "name": "helloworld",
+  "displayName": "helloworld",
+  "description": "Hello Boy",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.54.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:vuecli:openVueApp",
+    "onCommand:helloworld.helloWorld",
+    "onCommand:catCoding.start",
+    "onCommand:catCoding.doRefactor",
+    "onWebviewPanel:catCoding",
+    "onView:data1",
+    "onView:data2",
+    "onCommand:data1.refresh",
+    "onCommand:data2.refresh"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "helloworld.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "catCoding.start",
+        "title": "Start the cat coding",
+        "category": "Cat Coding"
+      },
+      {
+        "command": "catCoding.doRefactor",
+        "title": "PostMessage",
+        "category": "Cat Coding Message"
+      },
+      {
+        "command": "data1.refresh",
+        "title": "刷新"
+      },
+      {
+        "command": "data2.refresh",
+        "title": "refresh"
+      },
+      {
+        "command": "vuecli:openVueApp",
+        "title": "Vue APP"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "tticon",
+          "title": "TTI DEMO",
+          "icon": "media/key.svg"
+        }
+      ]
+    },
+    "views": {
+      "tticon": [
+        {
+          "id": "data1",
+          "name": "Data1"
+        },
+        {
+          "id": "data2",
+          "name": "Data2"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "data1.refresh",
+          "when": "view == data1",
+          "group": "navigation"
+        },
+        {
+          "command": "data2.refresh",
+          "when": "view == data2"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "data2.refresh",
+          "when": "view == data2",
+          "group": "inline"
+        },
+        {
+          "command": "data1.refresh",
+          "when": "view == data1"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.54.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "eslint": "^8.36.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^4.9.5",
+    "ts-loader": "^9.4.2",
+    "webpack": "^5.76.3",
+    "webpack-cli": "^5.0.1",
+    "@vscode/test-electron": "^2.3.0"
+  }
+}
